@@ -1,0 +1,56 @@
+name: Update GitHub Stats
+
+on:
+  schedule:
+  - cron: '0 0 * * *' # Run daily at midnight UTC
+  workflow_dispatch:
+
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+          - name: Generate GitHub Stats
+            uses: readme-tools/github-readme-stats-action@v1
+            with:
+              card: stats
+              username: ${{ github.repository_owner }}
+              path: profile/github-stats-card.svg # Specify output path
+    
+          - name: Locate Generated SVG
+            id: locate_svg
+            run: |
+              # The action should now output to profile/github-stats-card.svg
+              if [ -f "profile/github-stats-card.svg" ]; then
+                echo "::set-output name=svg_file::profile/github-stats-card.svg"
+              else
+                echo "profile/github-stats-card.svg not found. Check readme-tools/github-readme-stats-action documentation for output paths."
+                exit 1
+              fi
+    
+          - name: Update README.md
+            run: |
+              SVG_FILE="${{ steps.locate_svg.outputs.svg_file }}"
+              MARKDOWN_IMAGE_TAG="![GitHub Stats](https://github.com/${{ github.repository }}/blob/main/$SVG_FILE?raw=true)"
+    
+              if ! grep -qF "$MARKDOWN_IMAGE_TAG" README.md; then
+                # Ensure the directory exists before writing to it
+                mkdir -p $(dirname "$SVG_FILE")
+                echo -e "\n${MARKDOWN_IMAGE_TAG}" >> README.md
+                echo "README.md updated with GitHub Stats."
+              else
+                echo "GitHub Stats markdown already present in README.md. Skipping update."
+              fi
+    
+          - name: Commit and Push changes
+            run: |
+              git config user.name "github-actions[bot]"
+              git config user.email "github-actions[bot]@users.noreply.github.com"
+              git add profile/github-stats-card.svg README.md
+              git commit -m "feat: Update GitHub Stats" || echo "No changes to commit"
+              git push
