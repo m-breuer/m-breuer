@@ -1,15 +1,21 @@
-
-    <svg width="576.5"  height="120" viewBox="0 0 576.5 120" fill="#fffefe" xmlns="http://www.w3.org/2000/svg">
-    <style>
-    .text { font: 600 16px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2f80ed }
-    .small { font: 600 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: #434d58 }
-    .gray { fill: #858585 }
-    </style>
-    <rect x="0.5" y="0.5" width="575.5" height="99%" rx="4.5" fill="#fffefe" stroke="#e4e2e2"/>
-    <text x="25" y="45" class="text">Something went wrong! file an issue at https://tiny.one/readme-stats</text>
-    <text data-testid="message" x="25" y="55" class="text small">
-      <tspan x="25" dy="18">Resource not accessible by integration</tspan>
-      <tspan x="25" dy="18" class="gray">OK</tspan>
-    </text>
-    </svg>
-  
+<svg width="495" height="195" viewBox="0 0 495 195" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">GitHub Stats</title>
+  <desc id="desc">Public GitHub statistics for marcel-breuer</desc>
+  <style>
+    .header { font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2f80ed; }
+    .stat { font: 400 14px 'Segoe UI', Ubuntu, Sans-Serif; fill: #434d58; }
+    .value { font: 600 14px 'Segoe UI', Ubuntu, Sans-Serif; fill: #434d58; }
+  </style>
+  <rect x="0.5" y="0.5" width="494" height="194" rx="4.5" fill="#fffefe" stroke="#e4e2e2"/>
+  <text x="25" y="38" class="header">GitHub Stats</text>
+  <text x="25" y="80" class="stat">Public repositories</text>
+  <text x="470" y="80" class="value" text-anchor="end">18</text>
+  <text x="25" y="101" class="stat">Total stars</text>
+  <text x="470" y="101" class="value" text-anchor="end">0</text>
+  <text x="25" y="122" class="stat">Followers</text>
+  <text x="470" y="122" class="value" text-anchor="end">3</text>
+  <text x="25" y="143" class="stat">Pull requests</text>
+  <text x="470" y="143" class="value" text-anchor="end">857</text>
+  <text x="25" y="164" class="stat">Contributions</text>
+  <text x="470" y="164" class="value" text-anchor="end">1698</text>
+</svg>
